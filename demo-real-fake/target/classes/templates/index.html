@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Real No Fake</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: green;
+            padding: 10px;
+            color: white;
+        }
+        .search-bar input {
+            width: 200px;
+            padding: 5px;
+        }
+        .profile-pic {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+        }
+        .user-options {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        main {
+            display: flex;
+            width: 100%;
+            max-width: 1200px;
+            justify-content: space-between;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .new-post, .news-list, .recommended-news {
+            flex: 1;
+            margin: 10px;
+        }
+        .new-post {
+            order: 1;
+            flex: 0 0 25%;
+        }
+        .news-list {
+            order: 2;
+            flex: 0 0 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .recommended-news {
+            order: 3;
+            flex: 0 0 25%;
+        }
+        .news-list img {
+            max-width: 100%;
+            height: auto;
+        }
+        .news-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+        .news-item img {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">REAL NO FAKE</div>
+        <div class="search-bar">
+            <input type="text" placeholder="Buscar...">
+        </div>
+        <div class="user-options">
+            <a th:href="@{/login}">
+                <img src="images/profile.png" alt="Foto de perfil" class="profile-pic">
+            </a>
+            <a th:if="${username != null}" class="profile-link" th:text="${username}">Perfil</a>
+            <a th:if="${username == null}" th:href="@{/login}" class="profile-link">Perfil</a>
+            <button class="notification-btn">Notificaciones</button>
+            <button class="logout-btn">Cerrar sesión</button>
+        </div>
+    </header>
+    <main>
+        <section class="new-post">
+            <h2>Hacer una publicación</h2>
+            <form th:action="@{/addPost}" method="post" enctype="multipart/form-data">
+                <input type="text" name="title" placeholder="Título" required>
+                <!-- Add other form fields as needed -->
+            </form>
+        </section>
+        <section class="news-list">
+            <h2>Noticias recientes</h2>
+            <div class="news-item">
+                <img src="images/news1.jpg" alt="Nueva Especie de Ave">
+                <h3>Descubren Nueva Especie de Ave en la Amazonía que Brilla en la Oscuridad</h3>
+                <p>Científicos del Instituto de Investigación de Biodiversidad han descubierto una nueva especie de ave en la selva amazónica que tiene la sorprendente capacidad de brillar en la oscuridad. Esta ave, denominada "Lumifluvia amazónica," emite una luz bioluminiscente que utiliza para comunicarse y atraer a sus parejas. Este descubrimiento ha generado gran entusiasmo en la comunidad científica, ya que podría ofrecer nuevas pistas sobre la biodiversidad y los ecosistemas de la región.</p>
+            </div>
+            <div class="news-item">
+                <img src="images/news2.jpg" alt="Kylian Mbappé con el Barcelona SC">
+                <h3>Kylian Mbappé Firma con el Barcelona SC: Un Nuevo Capítulo en su Carrera</h3>
+                <p>En un sorprendente giro de los acontecimientos, Kylian Mbappé, la superestrella del fútbol mundial, ha firmado con el Barcelona Sporting Club de Guayaquil. El acuerdo, que se ha mantenido en secreto hasta el último momento, marca un hito histórico para el club ecuatoriano. Mbappé expresó su entusiasmo por unirse al equipo y contribuir a sus éxitos futuros. "Estoy emocionado por este nuevo desafío y espero hacer una gran diferencia en el Barcelona SC," declaró el delantero.</p>
+            </div>
+        </section>
+        <section class="recommended-news">
+            <h2>Noticias recomendadas</h2>
+            <!-- Add recommended news items here -->
+        </section>
+    </main>
+</body>
+</html>
